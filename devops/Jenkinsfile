@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+        username_sp = credentials('username_sp')
+        password_sp = credentials('password_sp')
+        tenant = credentials('tenant')
+        suscripcion = credentials('suscripcion')
+    }
+    stages {
+        stage('Conexion azure') {
+            steps {
+                sh 'az login --service-principal --username $username_sp --tenant $tenant  --password $password_sp'
+            }
+        }
+        stage('Configuracion de la suscripcion') {
+            steps {
+                sh 'az account set -s $suscripcion'
+            }
+        }
+        stage('Conexion al AKS') {
+            steps {
+                sh 'az aks get-credentials -n azkseuappd01 -g azrgeuappd01'
+            }
+        }
+        stage('Ejecucion del despliegue odoo') {
+            steps {
+                sh 'kubectl apply -f odoo.yml'
+            }
+        }
+    }
+}
