@@ -50,9 +50,20 @@ spec:
     port: 80
     targetPort: 8069
   type: LoadBalancer
-          
-
-  
+ 
+        #- name: odoo-db
+        #  image: postgres:10
+        #  ports:
+        #  - name: oddo-db-port
+        #    containerPort: 5432
+        #  env:
+        #    - name: POSTGRES_PASSWORD
+        #      value: odoo
+        #    - name: POSTGRES_USER
+        #      value: odoo
+        #    - name: POSTGRES_DB
+        #      value: postgres
+---
 
   
 
