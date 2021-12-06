@@ -37,20 +37,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: odoo-secrets
-                  key: postgres_password     
-        #- name: odoo-db
-        #  image: postgres:10
-        #  ports:
-        #  - name: oddo-db-port
-        #    containerPort: 5432
-        #  env:
-        #    - name: POSTGRES_PASSWORD
-        #      value: odoo
-        #    - name: POSTGRES_USER
-        #      value: odoo
-        #    - name: POSTGRES_DB
-        #      value: postgres
----
+                  key: postgres_password
 apiVersion: v1
 kind: Service
 metadata:
